@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>market_online | Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   <link rel="stylesheet" href="cameroon_theme.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-flex">
+            <div class="logo">
+                <h1>market_online Admin</h1>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="dashboard-title">User Management Dashboard</div>
+            <div class="tab-bar" id="adminTabBar">
+                <button class="tab-btn active" data-tab="accounts">Accounts</button>
+                <button class="tab-btn" data-tab="transactions">Transactions</button>
+                <button class="tab-btn" data-tab="profits">Profits</button>
+                <button class="tab-btn" data-tab="graph">Graph</button>
+                <button class="tab-btn" data-tab="partners">Partners</button>
+            </div>
+            <section class="dashboard-section tab-content active" id="accountsSection">
+                <div id="admin-briefing" style="background:var(--card-bg);border-radius:1rem;padding:1.2rem 1.5rem;margin-bottom:1.5rem;box-shadow:var(--shadow);color:var(--text-color);">
+                    <h3 style="color:var(--primary-color);margin:0 0 0.5rem 0;">Welcome, Administrator!</h3>
+                    <ul style="margin:0 0 0.5rem 1.2rem;padding:0;font-size:1.05em;">
+                        <li>Deactivate a user to instantly hide their products from the marketplace.</li>
+                        <li>Activate a user to make their products visible again.</li>
+                        <li>All user status changes are now synchronized across the platform.</li>
+                        <li>Enjoy improved user experience, notifications, and a modern dashboard layout.</li>
+                    </ul>
+                    <div style="color:var(--text-light);font-size:0.98em;">Recent update: User status now controls product visibility for buyers. More admin features coming soon!</div>
+                </div>
+                <div id="admin-notification" style="display:none;background:#fffef0;color:#1a1a1a;padding:0.7rem 1.2rem;border-radius:0.7rem;margin-bottom:1rem;font-weight:600;"></div>
+                <div class="user-table-container">
+                    <table class="user-table" id="userTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Location</th>
+                                <th>Business Type</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- User rows will be injected here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section class="dashboard-section tab-content" id="transactionsSection">
+                <div class="demo-content">
+                    <h3 style="margin-bottom:1rem;color:var(--primary-color);">Recent Transactions</h3>
+                    <table style="width:100%;max-width:700px;margin:0 auto;border-collapse:collapse;background:var(--card-glass);border-radius:1rem;overflow:hidden;box-shadow:var(--shadow);">
+                        <thead>
+                            <tr style="background:var(--card-bg);color:var(--primary-color);">
+                                <th style="padding:0.8rem 1rem;">Date</th>
+                                <th style="padding:0.8rem 1rem;">User</th>
+                                <th style="padding:0.8rem 1rem;">Type</th>
+                                <th style="padding:0.8rem 1rem;">Amount</th>
+                                <th style="padding:0.8rem 1rem;">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="padding:0.7rem 1rem;">2025-07-30</td><td>Alice N.</td><td>Deposit</td><td>+50,000 FCFA</td><td style="color:#FFD700;">Completed</td></tr>
+                            <tr><td style="padding:0.7rem 1rem;">2025-07-28</td><td>Jean P.</td><td>Withdrawal</td><td>-15,000 FCFA</td><td style="color:#FFD700;">Completed</td></tr>
+                            <tr><td style="padding:0.7rem 1rem;">2025-07-27</td><td>Fatima S.</td><td>Transfer</td><td>+90,000 FCFA</td><td style="color:#FFD700;">Completed</td></tr>
+                            <tr><td style="padding:0.7rem 1rem;">2025-07-25</td><td>Chantal D.</td><td>Deposit</td><td>+10,000 FCFA</td><td style="color:#FFD700;">Completed</td></tr>
+                            <tr><td style="padding:0.7rem 1rem;">2025-07-24</td><td>Emile K.</td><td>Withdrawal</td><td>-5,000 FCFA</td><td style="color:#b91c1c;">Failed</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section class="dashboard-section tab-content" id="profitsSection">
+                <div class="demo-content">
+                    <h3 style="margin-bottom:1rem;color:var(--primary-color);">Profit Summary</h3>
+                    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:2.5rem;">
+                        <div style="background:var(--card-bg);border-radius:1rem;box-shadow:var(--shadow);padding:2rem 2.5rem;min-width:220px;text-align:center;">
+                            <div style="font-size:2.2rem;font-weight:700;color:#FFD700;">+1,250,000 FCFA</div>
+                            <div style="color:var(--text-light);margin-top:0.5rem;">Total Profits (2025)</div>
+                        </div>
+                        <div style="background:var(--card-bg);border-radius:1rem;box-shadow:var(--shadow);padding:2rem 2.5rem;min-width:220px;text-align:center;">
+                            <div style="font-size:2.2rem;font-weight:700;color:#3b82f6;">+320,000 FCFA</div>
+                            <div style="color:var(--text-light);margin-top:0.5rem;">Profits (July 2025)</div>
+                        </div>
+                        <div style="background:var(--card-bg);border-radius:1rem;box-shadow:var(--shadow);padding:2rem 2.5rem;min-width:220px;text-align:center;">
+                            <div style="font-size:2.2rem;font-weight:700;color:#f59e42;">+45,000 FCFA</div>
+                            <div style="color:var(--text-light);margin-top:0.5rem;">Profits (This Week)</div>
+                        </div>
+                    </div>
+                    <div style="margin-top:2.5rem;color:var(--text-light);font-size:1.1rem;text-align:center;">Profits are calculated after all fees and payouts. For detailed analytics, see the Graph tab.</div>
+                </div>
+            </section>
+            <section class="dashboard-section tab-content" id="graphSection">
+                <div class="demo-content">
+                    <h3 style="margin-bottom:1rem;color:var(--primary-color);">Platform Analytics</h3>
+                    <canvas id="adminGraph" width="600" height="220" style="background:var(--card-bg);border-radius:1rem;box-shadow:var(--shadow);margin:0 auto;display:block;max-width:100%;"></canvas>
+                    <div style="margin-top:1.5rem;color:var(--text-light);font-size:1.05rem;">Monthly user growth, transaction volume, and profit trends visualized. (Demo chart below)</div>
+                </div>
+            </section>
+            <section class="dashboard-section tab-content" id="partnersSection">
+                <div class="demo-content">
+                    <h3 style="margin-bottom:1rem;color:var(--primary-color);">Partners</h3>
+                    <ul style="list-style:none;padding:0;max-width:500px;margin:0 auto;">
+                        <li style="background:var(--card-bg);border-radius:0.8rem;box-shadow:var(--shadow);padding:1.2rem 1.5rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:1.2rem;">
+                            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="MTN" style="width:38px;height:38px;border-radius:50%;background:#fff;">
+                            <div>
+                                <div style="font-weight:600;">MTN Mobile Money</div>
+                                <div style="color:var(--text-light);font-size:0.98em;">Payment Integration</div>
+                            </div>
+                        </li>
+                        <li style="background:var(--card-bg);border-radius:0.8rem;box-shadow:var(--shadow);padding:1.2rem 1.5rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:1.2rem;">
+                            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968706.png" alt="Orange" style="width:38px;height:38px;border-radius:50%;background:#fff;">
+                            <div>
+                                <div style="font-weight:600;">Orange Money</div>
+                                <div style="color:var(--text-light);font-size:0.98em;">Payment Integration</div>
+                            </div>
+                        </li>
+                        <li style="background:var(--card-bg);border-radius:0.8rem;box-shadow:var(--shadow);padding:1.2rem 1.5rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:1.2rem;">
+                            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968707.png" alt="Express Union" style="width:38px;height:38px;border-radius:50%;background:#fff;">
+                            <div>
+                                <div style="font-weight:600;">Express Union</div>
+                                <div style="color:var(--text-light);font-size:0.98em;">Microfinance Partner</div>
+                            </div>
+                        </li>
+                        <li style="background:var(--card-bg);border-radius:0.8rem;box-shadow:var(--shadow);padding:1.2rem 1.5rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:1.2rem;">
+                            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968708.png" alt="Local Bank" style="width:38px;height:38px;border-radius:50%;background:#fff;">
+                            <div>
+                                <div style="font-weight:600;">Local Bank</div>
+                                <div style="color:var(--text-light);font-size:0.98em;">Banking Partner</div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div style="margin-top:1.5rem;color:var(--text-light);font-size:1.05rem;text-align:center;">Manage and add new partners to expand platform reach.</div>
+                </div>
+            </section>
+        </div>
+    
+    </main>
+    <script>
+// Demo chart for Graph tab (simple line chart, no external libs)
+document.addEventListener('DOMContentLoaded', function() {
+    const canvas = document.getElementById('adminGraph');
+    if (canvas && canvas.getContext) {
+        const ctx = canvas.getContext('2d');
+        // Demo data: monthly profits
+        const data = [120, 180, 150, 200, 250, 300, 350, 400, 420, 480, 500, 600];
+        const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        // Clear
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        // Axes
+        ctx.strokeStyle = '#bfc7d1';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(50, 20);
+        ctx.lineTo(50, 200);
+        ctx.lineTo(580, 200);
+        ctx.stroke();
+        // Y labels
+        ctx.fillStyle = '#bfc7d1';
+        ctx.font = '14px Segoe UI';
+        for(let i=0;i<=5;i++) {
+            let y = 200 - i*36;
+            ctx.fillText((i*100)+'k', 10, y+5);
+            ctx.beginPath();
+            ctx.moveTo(45, y);
+            ctx.lineTo(580, y);
+            ctx.strokeStyle = '#e5e7eb';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+        }
+        // Line
+        ctx.beginPath();
+        ctx.moveTo(50, 200-data[0]/600*180);
+        for(let i=1;i<data.length;i++) {
+            ctx.lineTo(50+i*44, 200-data[i]/600*180);
+        }
+        ctx.strokeStyle = '#3b82f6';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+        // Dots
+        for(let i=0;i<data.length;i++) {
+            ctx.beginPath();
+            ctx.arc(50+i*44, 200-data[i]/600*180, 5, 0, 2*Math.PI);
+            ctx.fillStyle = '#3b82f6';
+            ctx.fill();
+        }
+        // X labels
+        ctx.fillStyle = '#bfc7d1';
+        ctx.font = '13px Segoe UI';
+        for(let i=0;i<labels.length;i++) {
+            ctx.fillText(labels[i], 40+i*44, 215);
+        }
+    }
+});
+// Theme toggle logic
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+body.setAttribute('data-theme', savedTheme);
+themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+themeToggle.addEventListener('click', () => {
+    const currentTheme = body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    body.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+});
+
+// User data with persistent status (sync with localStorage)
+const defaultUsers = [
+    { name: 'Alice N.', email: 'alice@market_online.cm', phone: '+237 6 99 11 22 33', location: 'Douala', business: 'Tailoring', status: 'active' },
+    { name: 'Jean P.', email: 'jean@market_online.cm', phone: '+237 6 77 88 99 00', location: 'Yaoundé', business: 'Moto Taxi', status: 'inactive' },
+    { name: 'Fatima S.', email: 'fatima@market_online.cm', phone: '+237 6 55 44 33 22', location: 'Bamenda', business: 'Restaurant', status: 'active' },
+    { name: 'Emile K.', email: 'emile@market_online.cm', phone: '+237 6 88 77 66 55', location: 'Bafoussam', business: 'Hair & Beauty', status: 'active' },
+    { name: 'Chantal D.', email: 'chantal@market_online.cm', phone: '+237 6 22 33 44 55', location: 'Kribi', business: 'Street Vendor', status: 'inactive' },
+];
+let users = JSON.parse(localStorage.getItem('market_online_users')) || defaultUsers;
+
+function saveUsers() {
+    localStorage.setItem('market_online_users', JSON.stringify(users));
+}
+
+function showAdminNotification(msg) {
+    const note = document.getElementById('admin-notification');
+    note.textContent = msg;
+    note.style.display = 'block';
+    setTimeout(() => { note.style.display = 'none'; }, 2200);
+}
+
+function renderUsers() {
+    const tbody = document.querySelector('#userTable tbody');
+    tbody.innerHTML = '';
+    users.forEach((user, idx) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${user.name}</td>
+            <td>${user.email}</td>
+            <td>${user.phone}</td>
+            <td>${user.location}</td>
+            <td>${user.business}</td>
+            <td><span class="user-status status-${user.status}">${user.status.charAt(0).toUpperCase() + user.status.slice(1)}</span></td>
+            <td>
+                <div style="display:flex;gap:0.5rem;align-items:center;justify-content:center;">
+                    <button class="action-btn" onclick="toggleStatus(${idx})">${user.status === 'active' ? 'Deactivate' : 'Activate'}</button>
+                    <button class="action-btn" onclick="viewUser(${idx})"><i class="fas fa-eye"></i></button>
+                </div>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+window.toggleStatus = function(idx) {
+    users[idx].status = users[idx].status === 'active' ? 'inactive' : 'active';
+    saveUsers();
+    renderUsers();
+    showAdminNotification(`${users[idx].name} is now ${users[idx].status.toUpperCase()}`);
+};
+
+window.viewUser = function(idx) {
+    const user = users[idx];
+    alert(`User Details:\n\nName: ${user.name}\nEmail: ${user.email}\nPhone: ${user.phone}\nLocation: ${user.location}\nBusiness: ${user.business}\nStatus: ${user.status}`);
+};
+
+// On first load, sync localStorage if not present
+if (!localStorage.getItem('market_online_users')) {
+    saveUsers();
+}
+
+renderUsers();
+// Tab system for admin dashboard
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const tab = btn.getAttribute('data-tab');
+        tabContents.forEach(section => {
+            if (section.id === tab + 'Section') {
+                section.classList.add('active');
+            } else {
+                section.classList.remove('active');
+            }
+        });
+    });
+});
+    </script>
+</body>
+</html>

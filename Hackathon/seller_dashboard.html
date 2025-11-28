@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>market_online | Seller Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="cameroon_theme.css">
+    <style>
+        .dashboard-container {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .sidebar {
+            flex: 0 0 250px;
+            background: var(--card-glass);
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        .sidebar h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+        .sidebar-item {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-color);
+        }
+        .sidebar-item:hover, .sidebar-item.active {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--primary-color);
+            border-left: 3px solid var(--primary-color);
+            padding-left: 0.7rem;
+        }
+        .main-content {
+            flex: 1;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: var(--card-glass);
+            padding: 1.5rem;
+            border-radius: 1.2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            border-left: 4px solid var(--primary-color);
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0.5rem 0;
+        }
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        .stat-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .products-section {
+            background: var(--card-glass);
+            border-radius: 1.2rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .product-card {
+            background: var(--bg-color);
+            border-radius: 0.8rem;
+            overflow: hidden;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 16px rgba(255, 215, 0, 0.15);
+        }
+        .product-image {
+            width: 100%;
+            height: 180px;
+            background: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+        }
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 1rem;
+        }
+        .product-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        .product-price {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .product-actions button {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 0.4rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        .edit-btn {
+            background: var(--primary-color);
+            color: #1a1a1a;
+        }
+        .delete-btn {
+            background: #ff4444;
+            color: white;
+        }
+        .chart-container {
+            background: var(--card-glass);
+            border-radius: 1.2rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        .weekly-sales {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .day-bar {
+            text-align: center;
+        }
+        .bar {
+            width: 100%;
+            height: 120px;
+            background: var(--card-bg);
+            border-radius: 0.4rem 0.4rem 0 0;
+            margin-bottom: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .bar-fill {
+            background: var(--primary-color);
+            width: 100%;
+            height: 0%;
+            transition: height 0.3s ease;
+        }
+        .day-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+        .add-product-btn {
+            background: var(--primary-color);
+            color: #1a1a1a;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0.6rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .add-product-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-flex">
+            <div class="logo">
+                <h1>market_online Seller Hub</h1>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <span style="color: var(--text-light);" id="sellerName">Welcome, Seller</span>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="dashboard-container">
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <h3><i class="fas fa-home"></i> Menu</h3>
+                    <div class="sidebar-item active" onclick="switchTab('overview')">
+                        <i class="fas fa-chart-pie"></i> Dashboard Overview
+                    </div>
+                    <div class="sidebar-item" onclick="switchTab('products')">
+                        <i class="fas fa-box"></i> My Products
+                    </div>
+                    <div class="sidebar-item" onclick="switchTab('sales')">
+                        <i class="fas fa-chart-line"></i> Sales Analytics
+                    </div>
+                    <div class="sidebar-item" onclick="switchTab('settings')">
+                        <i class="fas fa-cog"></i> Settings
+                    </div>
+                    <button style="width: 100%; margin-top: 2rem; padding: 0.75rem; background: #ff4444; color: white; border: none; border-radius: 0.5rem; cursor: pointer;" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+
+                <!-- Main Content -->
+                <div class="main-content">
+                    <!-- Overview Tab -->
+                    <div id="overviewTab" class="tab-content">
+                        <h2 style="color: var(--primary-color); margin-bottom: 2rem;">Dashboard Overview</h2>
+                        
+                        <!-- Statistics -->
+                        <div class="stat-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-box"></i></div>
+                                <div class="stat-label">Total Products</div>
+                                <div class="stat-value" id="totalProducts">0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-shopping-cart"></i></div>
+                                <div class="stat-label">Weekly Sales</div>
+                                <div class="stat-value" id="weeklySales">0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-money-bill-wave"></i></div>
+                                <div class="stat-label">Revenue This Week</div>
+                                <div class="stat-value" id="weeklyRevenue">0 FCFA</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-star"></i></div>
+                                <div class="stat-label">Rating</div>
+                                <div class="stat-value" id="rating">4.8/5</div>
+                            </div>
+                        </div>
+
+                        <!-- Weekly Sales Chart -->
+                        <div class="chart-container">
+                            <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Weekly Sales Performance</h3>
+                            <div class="weekly-sales" id="weeklySalesChart">
+                                <!-- Will be generated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products Tab -->
+                    <div id="productsTab" class="tab-content" style="display: none;">
+                        <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">My Products</h2>
+                        <button class="add-product-btn" onclick="window.location.href='seller_product_upload.html'">
+                            <i class="fas fa-plus"></i> Add New Product
+                        </button>
+                        <div class="products-section">
+                            <div class="products-grid" id="productsGrid">
+                                <!-- Products will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sales Tab -->
+                    <div id="salesTab" class="tab-content" style="display: none;">
+                        <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Sales Analytics</h2>
+                        <div class="chart-container">
+                            <h3 style="color: var(--primary-color); margin-bottom: 2rem;">This Week's Performance</h3>
+                            <table style="width: 100%; color: var(--text-color);">
+                                <thead>
+                                    <tr style="border-bottom: 2px solid var(--border-color);">
+                                        <th style="padding: 1rem; text-align: left;">Day</th>
+                                        <th style="padding: 1rem; text-align: right;">Orders</th>
+                                        <th style="padding: 1rem; text-align: right;">Revenue</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="salesTable">
+                                    <!-- Will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Settings Tab -->
+                    <div id="settingsTab" class="tab-content" style="display: none;">
+                        <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Account Settings</h2>
+                        <div class="chart-container">
+                            <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Profile Information</h3>
+                            <div id="profileInfo" style="display: grid; gap: 1rem;">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        body.setAttribute('data-theme', savedTheme);
+        themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        });
+
+        // Load seller data
+        const sellerData = JSON.parse(localStorage.getItem('market_online_pending_seller')) || {
+            name: 'Seller',
+            products: [],
+            weekSales: [5, 8, 12, 7, 15, 9, 11]
+        };
+
+        document.getElementById('sellerName').textContent = `Welcome, ${sellerData.name || 'Seller'}`;
+
+        // Initialize dashboard
+        function initializeDashboard() {
+            // Update statistics
+            document.getElementById('totalProducts').textContent = sellerData.products?.length || 0;
+            
+            const weeklySales = sellerData.weekSales || [5, 8, 12, 7, 15, 9, 11];
+            const totalWeeklySales = weeklySales.reduce((a, b) => a + b, 0);
+            document.getElementById('weeklySales').textContent = totalWeeklySales;
+            
+            const avgPrice = 50000;
+            const weeklyRevenue = (totalWeeklySales * avgPrice).toLocaleString('fr-FR');
+            document.getElementById('weeklyRevenue').textContent = `${weeklyRevenue} FCFA`;
+
+            // Generate weekly sales chart
+            const maxSales = Math.max(...weeklySales);
+            const chartHtml = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, idx) => `
+                <div class="day-bar">
+                    <div class="bar">
+                        <div class="bar-fill" style="height: ${(weeklySales[idx] / maxSales) * 100}%"></div>
+                    </div>
+                    <div class="day-label">${day}</div>
+                </div>
+            `).join('');
+            document.getElementById('weeklySalesChart').innerHTML = chartHtml;
+
+            // Load products
+            loadProducts();
+
+            // Load sales table
+            loadSalesTable();
+
+            // Load profile info
+            loadProfileInfo();
+        }
+
+        function loadProducts() {
+            const grid = document.getElementById('productsGrid');
+            if (!sellerData.products || sellerData.products.length === 0) {
+                grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-light);">No products yet. <a href="seller_product_upload.html" style="color: var(--primary-color);">Add your first product</a></p>';
+                return;
+            }
+
+            grid.innerHTML = sellerData.products.map((product, idx) => `
+                <div class="product-card">
+                    <div class="product-image">
+                        ${product.images && product.images[0] ? `<img src="${product.images[0]}" alt="${product.name}">` : '<i class="fas fa-image"></i>'}
+                    </div>
+                    <div class="product-info">
+                        <h4>${product.name}</h4>
+                        <div class="product-price">${parseInt(product.price).toLocaleString('fr-FR')} FCFA</div>
+                        <small style="color: var(--text-light);">Stock: ${product.stock}</small>
+                        <div class="product-actions">
+                            <button class="edit-btn" onclick="editProduct(${idx})"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="delete-btn" onclick="deleteProduct(${idx})"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function loadSalesTable() {
+            const table = document.getElementById('salesTable');
+            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+            const weeklySales = sellerData.weekSales || [5, 8, 12, 7, 15, 9, 11];
+            
+            table.innerHTML = days.map((day, idx) => `
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                    <td style="padding: 1rem; text-align: left;">${day}</td>
+                    <td style="padding: 1rem; text-align: right; color: var(--primary-color); font-weight: 600;">${weeklySales[idx]}</td>
+                    <td style="padding: 1rem; text-align: right;">${(weeklySales[idx] * 50000).toLocaleString('fr-FR')} FCFA</td>
+                </tr>
+            `).join('');
+        }
+
+        function loadProfileInfo() {
+            const profileInfo = document.getElementById('profileInfo');
+            profileInfo.innerHTML = `
+                <div>
+                    <strong style="color: var(--text-color);">Business Name:</strong>
+                    <p>${sellerData.name || 'N/A'}</p>
+                </div>
+                <div>
+                    <strong style="color: var(--text-color);">Email:</strong>
+                    <p>${sellerData.email || 'N/A'}</p>
+                </div>
+                <div>
+                    <strong style="color: var(--text-color);">Location:</strong>
+                    <p>${sellerData.location || 'N/A'}</p>
+                </div>
+                <div>
+                    <strong style="color: var(--text-color);">Business Type:</strong>
+                    <p>${sellerData.business || 'N/A'}</p>
+                </div>
+                <div>
+                    <strong style="color: var(--text-color);">Verification Status:</strong>
+                    <p style="color: var(--primary-color);">${sellerData.verificationStatus || 'Pending'}</p>
+                </div>
+            `;
+        }
+
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = 'none');
+            document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
+
+            // Show selected tab
+            const tabId = tabName === 'overview' ? 'overviewTab' : 
+                          tabName === 'products' ? 'productsTab' :
+                          tabName === 'sales' ? 'salesTab' : 'settingsTab';
+            document.getElementById(tabId).style.display = 'block';
+            event.target.closest('.sidebar-item').classList.add('active');
+        }
+
+        function editProduct(idx) {
+            alert('Edit feature coming soon');
+        }
+
+        function deleteProduct(idx) {
+            if (confirm('Are you sure you want to delete this product?')) {
+                sellerData.products.splice(idx, 1);
+                localStorage.setItem('market_online_pending_seller', JSON.stringify(sellerData));
+                loadProducts();
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('market_online_current_user');
+            localStorage.removeItem('market_online_pending_seller');
+            window.location.href = 'login.html';
+        }
+
+        // Initialize
+        initializeDashboard();
+    </script>
+</body>
+</html>

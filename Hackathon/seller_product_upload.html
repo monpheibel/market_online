@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>market_online | Upload Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="cameroon_theme.css">
+    <style>
+        .upload-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+        .progress-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: space-between;
+        }
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            background: var(--card-bg);
+            border-radius: 0.5rem;
+            border: 2px solid var(--border-color);
+        }
+        .progress-step.active {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: var(--primary-color);
+        }
+        .progress-step i {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .product-upload-section {
+            background: var(--card-glass);
+            border-radius: 1.2rem;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .product-image-box {
+            position: relative;
+            aspect-ratio: 1;
+            border: 2px dashed var(--border-color);
+            border-radius: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--bg-color);
+        }
+        .product-image-box:hover {
+            border-color: var(--primary-color);
+            background: rgba(255, 215, 0, 0.05);
+        }
+        .product-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0.6rem;
+        }
+        .product-image-box input {
+            display: none;
+        }
+        .product-image-box .upload-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--primary-color);
+        }
+        .product-image-box .upload-icon i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .remove-btn {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4444;
+            color: white;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.8rem;
+            display: none;
+        }
+        .product-image-box:hover .remove-btn {
+            display: block;
+        }
+        .product-form {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+        .counter {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #1a1a1a;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-flex">
+            <div class="logo">
+                <h1>market_online Seller Hub</h1>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="upload-container">
+            <h2 style="color: var(--primary-color); text-align: center; margin-bottom: 2rem;">
+                <i class="fas fa-image"></i> Upload Your Products
+            </h2>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-step active">
+                    <i class="fas fa-camera"></i>
+                    <strong>Upload Products</strong>
+                    <small style="color: var(--text-light);">Max 20 images</small>
+                </div>
+                <div class="progress-step">
+                    <i class="fas fa-check-circle"></i>
+                    <strong>Review</strong>
+                    <small style="color: var(--text-light);">Verify details</small>
+                </div>
+                <div class="progress-step">
+                    <i class="fas fa-chart-line"></i>
+                    <strong>Dashboard</strong>
+                    <small style="color: var(--text-light);">Start selling</small>
+                </div>
+            </div>
+
+            <!-- Product Upload Section -->
+            <div class="product-upload-section">
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">
+                    Product Images <span class="counter" id="imageCounter">0/20</span>
+                </h3>
+                
+                <div class="product-grid" id="productGrid">
+                    <!-- Product image boxes will be generated by JavaScript -->
+                </div>
+
+                <!-- Product Details Form -->
+                <div class="product-form" id="productDetailsForm">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Product Details</h4>
+                    
+                    <div class="form-row full">
+                        <div class="form-group">
+                            <label for="productName">Product/Service Name *</label>
+                            <input type="text" id="productName" placeholder="e.g., Custom Wedding Dresses" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row full">
+                        <div class="form-group">
+                            <label for="productDesc">Description *</label>
+                            <textarea id="productDesc" placeholder="Describe your product or service..." rows="4" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productPrice">Price (FCFA) *</label>
+                            <input type="number" id="productPrice" placeholder="e.g., 50000" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productCategory">Category *</label>
+                            <select id="productCategory" required>
+                                <option value="">Select category</option>
+                                <option value="Tailoring">Tailoring</option>
+                                <option value="Hair & Beauty">Hair & Beauty</option>
+                                <option value="Food & Beverages">Food & Beverages</option>
+                                <option value="Services">Services</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Groceries">Groceries</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productStock">Stock Quantity *</label>
+                            <input type="number" id="productStock" placeholder="e.g., 5" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productDelivery">Delivery Time *</label>
+                            <input type="text" id="productDelivery" placeholder="e.g., 2-3 days" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button type="button" id="saveDrafBtn" class="btn" style="flex: 1; background: var(--secondary-color);">
+                        <i class="fas fa-save"></i> Save as Draft
+                    </button>
+                    <button type="button" id="publishBtn" class="btn" style="flex: 1;">
+                        <i class="fas fa-upload"></i> Publish & Continue
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        body.setAttribute('data-theme', savedTheme);
+        themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        });
+
+        const MAX_IMAGES = 20;
+        let uploadedImages = [];
+        const grid = document.getElementById('productGrid');
+        const counter = document.getElementById('imageCounter');
+
+        // Generate upload boxes
+        function generateUploadBoxes() {
+            grid.innerHTML = '';
+            for (let i = 0; i < MAX_IMAGES; i++) {
+                const box = document.createElement('div');
+                box.className = 'product-image-box';
+                box.innerHTML = `
+                    <input type="file" accept="image/*" data-index="${i}">
+                    <button class="remove-btn" data-index="${i}"><i class="fas fa-trash"></i></button>
+                    <div class="upload-icon">
+                        <i class="fas fa-plus"></i>
+                        <small>${i + 1}</small>
+                    </div>
+                `;
+                grid.appendChild(box);
+
+                // File upload handler
+                const input = box.querySelector('input');
+                input.addEventListener('change', handleImageUpload);
+
+                // Remove button
+                const removeBtn = box.querySelector('.remove-btn');
+                removeBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    removeImage(i);
+                });
+
+                // Click to upload
+                box.addEventListener('click', () => input.click());
+            }
+        }
+
+        function handleImageUpload(e) {
+            const file = e.target.files[0];
+            const index = parseInt(e.target.dataset.index);
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    uploadedImages[index] = event.target.result;
+                    updateGrid();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function removeImage(index) {
+            uploadedImages[index] = null;
+            updateGrid();
+        }
+
+        function updateGrid() {
+            const boxes = document.querySelectorAll('.product-image-box');
+            boxes.forEach((box, index) => {
+                if (uploadedImages[index]) {
+                    box.innerHTML = `
+                        <img src="${uploadedImages[index]}" alt="Product ${index + 1}">
+                        <button class="remove-btn" data-index="${index}"><i class="fas fa-trash"></i></button>
+                    `;
+                    box.querySelector('.remove-btn').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        removeImage(index);
+                    });
+                } else {
+                    box.innerHTML = `
+                        <input type="file" accept="image/*" data-index="${index}">
+                        <button class="remove-btn" data-index="${index}"><i class="fas fa-trash"></i></button>
+                        <div class="upload-icon">
+                            <i class="fas fa-plus"></i>
+                            <small>${index + 1}</small>
+                        </div>
+                    `;
+                    box.querySelector('input').addEventListener('change', handleImageUpload);
+                    box.querySelector('.remove-btn').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        removeImage(index);
+                    });
+                    box.addEventListener('click', () => box.querySelector('input').click());
+                }
+            });
+
+            const uploadedCount = uploadedImages.filter(img => img).length;
+            counter.textContent = `${uploadedCount}/20`;
+        }
+
+        // Publish button
+        document.getElementById('publishBtn').addEventListener('click', () => {
+            const uploadedCount = uploadedImages.filter(img => img).length;
+            if (uploadedCount === 0) {
+                alert('Please upload at least 1 product image');
+                return;
+            }
+
+            const name = document.getElementById('productName').value;
+            const desc = document.getElementById('productDesc').value;
+            const price = document.getElementById('productPrice').value;
+            const category = document.getElementById('productCategory').value;
+
+            if (!name || !desc || !price || !category) {
+                alert('Please fill in all product details');
+                return;
+            }
+
+            // Save product data
+            const product = {
+                name: name,
+                description: desc,
+                price: price,
+                category: category,
+                stock: document.getElementById('productStock').value,
+                delivery: document.getElementById('productDelivery').value,
+                images: uploadedImages.filter(img => img),
+                createdAt: new Date().toISOString()
+            };
+
+            let sellerData = JSON.parse(localStorage.getItem('market_online_pending_seller')) || {};
+            sellerData.products = sellerData.products || [];
+            sellerData.products.push(product);
+            localStorage.setItem('market_online_pending_seller', JSON.stringify(sellerData));
+
+            alert('Product uploaded successfully!');
+            window.location.href = 'seller_dashboard.html';
+        });
+
+        // Initialize
+        generateUploadBoxes();
+    </script>
+</body>
+</html>

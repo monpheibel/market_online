@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>market_online | Seller Signup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="cameroon_theme.css">
+    <style>
+        .seller-signup-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--card-glass);
+            border-radius: 1.2rem;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+        .document-upload-group {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 215, 0, 0.05);
+            border: 2px solid var(--border-color);
+            border-radius: 0.8rem;
+        }
+        .document-upload-group h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .file-input-wrapper {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        .file-input-wrapper input[type="file"] {
+            display: none;
+        }
+        .file-input-label {
+            display: block;
+            padding: 1rem;
+            background: var(--bg-color);
+            border: 2px dashed var(--border-color);
+            border-radius: 0.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .file-input-label:hover {
+            border-color: var(--primary-color);
+            background: rgba(255, 215, 0, 0.05);
+        }
+        .file-input-label i {
+            display: block;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .file-preview {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        .file-preview img {
+            max-width: 100%;
+            max-height: 150px;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-flex">
+            <div class="logo">
+                <h1>market_online</h1>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="seller-signup-container">
+            <h2 style="color: var(--primary-color); text-align: center; margin-bottom: 1rem;">
+                <i class="fas fa-file-check"></i> Seller Verification
+            </h2>
+            <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">
+                Please upload the required documents for seller verification
+            </p>
+
+            <form id="verificationForm">
+                <!-- National ID Front -->
+                <div class="document-upload-group">
+                    <h4>
+                        <i class="fas fa-id-card"></i> National ID Card - Front Side
+                    </h4>
+                    <div class="file-input-wrapper">
+                        <input type="file" id="nationalIdFront" accept="image/*" required>
+                        <label for="nationalIdFront" class="file-input-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Click to upload or drag and drop</span>
+                            <div class="file-preview" id="nationalIdFrontPreview"></div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- National ID Back -->
+                <div class="document-upload-group">
+                    <h4>
+                        <i class="fas fa-id-card"></i> National ID Card - Back Side
+                    </h4>
+                    <div class="file-input-wrapper">
+                        <input type="file" id="nationalIdBack" accept="image/*" required>
+                        <label for="nationalIdBack" class="file-input-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Click to upload or drag and drop</span>
+                            <div class="file-preview" id="nationalIdBackPreview"></div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Selfie -->
+                <div class="document-upload-group">
+                    <h4>
+                        <i class="fas fa-camera"></i> Your Selfie/Photo
+                    </h4>
+                    <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 1rem;">
+                        A clear photo of yourself for identity verification
+                    </p>
+                    <div class="file-input-wrapper">
+                        <input type="file" id="selfie" accept="image/*" required>
+                        <label for="selfie" class="file-input-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Click to upload or drag and drop</span>
+                            <div class="file-preview" id="selfiePreview"></div>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%; margin-top: 2rem;">
+                    <i class="fas fa-check"></i> Complete Verification
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        body.setAttribute('data-theme', savedTheme);
+        themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        });
+
+        // File preview functionality
+        const fileInputs = [
+            { id: 'nationalIdFront', previewId: 'nationalIdFrontPreview' },
+            { id: 'nationalIdBack', previewId: 'nationalIdBackPreview' },
+            { id: 'selfie', previewId: 'selfiePreview' }
+        ];
+
+        fileInputs.forEach(({ id, previewId }) => {
+            const input = document.getElementById(id);
+            const preview = document.getElementById(previewId);
+            
+            input.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        preview.innerHTML = `<img src="${e.target.result}" alt="Preview"><p>✓ ${input.files[0].name}</p>`;
+                    };
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+
+            // Drag and drop
+            const label = input.nextElementSibling;
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                label.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                label.addEventListener(eventName, () => {
+                    label.style.borderColor = 'var(--primary-color)';
+                    label.style.background = 'rgba(255, 215, 0, 0.1)';
+                });
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                label.addEventListener(eventName, () => {
+                    label.style.borderColor = 'var(--border-color)';
+                    label.style.background = 'var(--bg-color)';
+                });
+            });
+
+            label.addEventListener('drop', (e) => {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                input.files = files;
+                input.dispatchEvent(new Event('change', { bubbles: true }));
+            });
+        });
+
+        // Form submission
+        document.getElementById('verificationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const sellerData = JSON.parse(localStorage.getItem('market_online_pending_seller'));
+            if (!sellerData) {
+                alert('Error: Seller data not found. Please sign up again.');
+                return;
+            }
+
+            // Store verification status
+            sellerData.verified = true;
+            sellerData.verificationStatus = 'pending_review';
+            localStorage.setItem('market_online_pending_seller', JSON.stringify(sellerData));
+
+            alert('Documents submitted successfully! Proceeding to product upload.');
+            window.location.href = 'seller_product_upload.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>market_online | Welcome</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="market_online_welcome.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-flex">
+            <div class="logo">
+                <h1>market_online</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#business">Business</a></li>
+                    <li><a href="#buyers">Buyers</a></li>
+                    <li><a href="#payments">Payments</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li class="login-dropdown">
+                        <a href="#" id="openLoginDropdown">Login <i class="fas fa-caret-down"></i></a>
+                        <ul class="login-dropdown-menu">
+                            <li><a href="#" id="loginAsBuyer">Login as Buyer</a></li>
+                            <li><a href="#" id="loginAsSeller">Login as Seller</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+    <!-- Login Modal -->
+    <div id="loginModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,41,59,0.25);z-index:9999;align-items:center;justify-content:center;">
+        <div class="login-modal-card">
+            <button id="closeLoginModal" class="login-modal-close">&times;</button>
+            <h2 class="login-modal-title">Login to market_online</h2>
+            <form class="login-form" autocomplete="off">
+                <div class="login-modal-field">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" name="email" required>
+                </div>
+                <div class="login-modal-field">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" name="password" required>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+            <a href="signup.html" class="switch-link">Don't have an account? Sign Up</a>
+        </div>
+    </div>
+    <section class="hero fade-in" id="home" style="padding:7rem 0 3rem 0;background:linear-gradient(135deg,rgba(255,215,0,0.10) 0%,rgba(255,165,0,0.05) 100%);text-align:center;">
+        <div class="container" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:3rem;">
+            <div style="flex:1 1 350px;min-width:300px;text-align:left;max-width:500px;">
+                <h2 style="font-size:2.5rem;margin-bottom:1.2rem;">Empowering Cameroon’s Digital Economy</h2>
+                <p style="font-size:1.15rem;color:var(--text-light);margin-bottom:2rem;">market_online connects informal businesses and buyers with secure digital payments, business growth tools, and a trusted marketplace. Join us to grow, connect, and prosper in the new era of finance.</p>
+                <div class="cta-buttons" style="margin-bottom:1.5rem;">
+                    <a href="login.html" class="btn primary-btn">Login</a>
+                    <a href="signup.html" class="btn secondary-btn">Create Account</a>
+                </div>
+                <ul style="color:var(--primary-color);font-weight:600;list-style:none;padding:0;margin:0 0 1.2rem 0;">
+                    <li><i class="fas fa-check-circle"></i> Fast, secure payments</li>
+                    <li><i class="fas fa-check-circle"></i> 100% mobile friendly</li>
+                    <li><i class="fas fa-check-circle"></i> Trusted by local businesses</li>
+                </ul>
+            </div>
+            <div class="welcome-image" style="margin:0;max-width:400px;">
+                <img src="68111b72e8a6daa83f6e391900cfe391.jpg" alt="Fintech Digital Cameroon" loading="lazy" style="width:100%;border-radius:1rem;box-shadow:0 10px 32px 0 rgba(255,215,0,0.13), 0 2px 8px 0 rgba(0,0,0,0.08);object-fit:cover;min-height:260px;background:#fffef0;">
+            </div>
+        </div>
+    </section>
+    <!-- Features Section -->
+    <section id="features" class="fade-in" style="padding:3rem 0;background:var(--card-bg);">
+        <div class="container">
+            <h2 class="section-title" style="text-align:center;color:var(--primary-color);margin-bottom:2.5rem;">Why Choose <span style="color:var(--secondary-color);">market_online?</span></h2>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;">
+                <div class="glass-card" style="padding:2rem;text-align:center;position:relative;overflow:hidden;">
+                    <div style="position:absolute;top:-30px;left:-30px;width:120px;height:120px;background:radial-gradient(circle,rgba(255,215,0,0.13) 0%,rgba(255,165,0,0.07) 100%);filter:blur(18px);"></div>
+                    <div style="font-size:2.2rem;color:var(--primary-color);margin-bottom:1rem;position:relative;z-index:1;"><i class="fas fa-shield-alt"></i></div>
+                    <h3 style="margin-bottom:0.7rem;position:relative;z-index:1;">Secure Transactions</h3>
+                    <p style="color:var(--text-light);position:relative;z-index:1;">Your money and data are protected with bank-grade security and encryption.</p>
+                </div>
+                <div class="glass-card" style="padding:2rem;text-align:center;position:relative;overflow:hidden;">
+                    <div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:radial-gradient(circle,rgba(255,165,0,0.13) 0%,rgba(255,215,0,0.07) 100%);filter:blur(18px);"></div>
+                    <div style="font-size:2.2rem;color:var(--primary-color);margin-bottom:1rem;position:relative;z-index:1;"><i class="fas fa-bolt"></i></div>
+                    <h3 style="margin-bottom:0.7rem;position:relative;z-index:1;">Instant Mobile Payments</h3>
+                    <p style="color:var(--text-light);position:relative;z-index:1;">Send and receive money instantly using MTN Mobile Money, Orange Money, and more.</p>
+                </div>
+                <div class="glass-card" style="padding:2rem;text-align:center;position:relative;overflow:hidden;">
+                    <div style="position:absolute;bottom:-30px;left:-30px;width:120px;height:120px;background:radial-gradient(circle,rgba(255,215,0,0.13) 0%,rgba(255,165,0,0.07) 100%);filter:blur(18px);"></div>
+                    <div style="font-size:2.2rem;color:var(--primary-color);margin-bottom:1rem;position:relative;z-index:1;"><i class="fas fa-users"></i></div>
+                    <h3 style="margin-bottom:0.7rem;position:relative;z-index:1;">Community Marketplace</h3>
+                    <p style="color:var(--text-light);position:relative;z-index:1;">Find trusted sellers and buyers from all over Cameroon’s informal sector.</p>
+                </div>
+                <div class="glass-card" style="padding:2rem;text-align:center;position:relative;overflow:hidden;">
+                    <div style="position:absolute;bottom:-30px;right:-30px;width:120px;height:120px;background:radial-gradient(circle,rgba(255,165,0,0.13) 0%,rgba(255,215,0,0.07) 100%);filter:blur(18px);"></div>
+                    <div style="font-size:2.2rem;color:var(--primary-color);margin-bottom:1rem;position:relative;z-index:1;"><i class="fas fa-chart-line"></i></div>
+                    <h3 style="margin-bottom:0.7rem;position:relative;z-index:1;">Business Growth Tools</h3>
+                    <p style="color:var(--text-light);position:relative;z-index:1;">Access digital tools to manage sales, track earnings, and grow your business.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Payment Methods Section -->
+    <section id="payments" class="fade-in" style="padding:3rem 0 2rem 0;">
+        <div class="container" style="max-width:900px;">
+            <h2 style="text-align:center;color:var(--primary-color);margin-bottom:2rem;">Supported Payment Methods</h2>
+            <div style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;align-items:center;">
+                <div class="glass-card" style="flex:1 1 220px;min-width:200px;padding:1.5rem;text-align:center;">
+                    <img src="68111b72e8a6daa83f6e391900cfe391.jpg" alt="MTN Mobile Money" style="height:40px;margin-bottom:0.7rem;">
+                    <h4 style="color:var(--primary-color);margin-bottom:0.5rem;">MTN Mobile Money</h4>
+                    <p style="color:var(--text-light);font-size:1em;">Pay and get paid instantly with Cameroon’s most popular mobile wallet.</p>
+                </div>
+                <div class="glass-card" style="flex:1 1 220px;min-width:200px;padding:1.5rem;text-align:center;">
+                    <img src="Orange Money Logo PNG Vector (AI) Free Download.jpeg" alt="Orange Money" style="height:40px;margin-bottom:0.7rem;">
+                    <h4 style="color:var(--primary-color);margin-bottom:0.5rem;">Orange Money</h4>
+                    <p style="color:var(--text-light);font-size:1em;">Seamless payments and transfers with Orange Money, available nationwide.</p>
+                </div>
+                <div class="glass-card" style="flex:1 1 220px;min-width:200px;padding:1.5rem;text-align:center;">
+                    <i class="fas fa-university" style="font-size:2.2rem;color:var(--primary-color);margin-bottom:0.7rem;"></i>
+                    <h4 style="color:var(--primary-color);margin-bottom:0.5rem;">Bank Transfers</h4>
+                    <p style="color:var(--text-light);font-size:1em;">Connect your local bank account for larger transactions and savings.</p>
+                </div>
+                <div class="glass-card" style="flex:1 1 220px;min-width:200px;padding:1.5rem;text-align:center;">
+                    <i class="fas fa-wallet" style="font-size:2.2rem;color:var(--primary-color);margin-bottom:0.7rem;"></i>
+                    <h4 style="color:var(--primary-color);margin-bottom:0.5rem;">Cash & Other Wallets</h4>
+                    <p style="color:var(--text-light);font-size:1em;">We support cash-in/cash-out and other local e-wallets for your convenience.</p>
+                </div>
+            </div>
+            <p style="text-align:center;color:var(--text-light);margin-top:2rem;">market_online is committed to supporting the most popular and accessible payment methods in Cameroon, making digital finance easy for everyone.</p>
+        </div>
+    </section>
+    <section id="business" class="fade-in" style="background: var(--card-bg); padding: 3rem 0;">
+        <div class="container" style="max-width:900px;">
+            <h2 style="text-align:center; color:var(--primary-color);">For Businesses & Sellers</h2>
+            <div style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center;">
+                <div class="glass-card" style="flex:1 1 250px; padding:2rem; min-width:250px;">
+                    <i class="fas fa-store fa-2x" style="color:var(--primary-color);"></i>
+                    <h3>Grow Your Business</h3>
+                    <p>List your products or services, reach more customers, and manage your sales with ease.</p>
+                </div>
+                <div class="glass-card" style="flex:1 1 250px; padding:2rem; min-width:250px;">
+                    <i class="fas fa-money-bill-wave fa-2x" style="color:var(--primary-color);"></i>
+                    <h3>Access Business Funding</h3>
+                    <p>Apply for a starting fund to boost your business and take advantage of new opportunities.</p>
+                </div>
+                <div class="glass-card" style="flex:1 1 250px; padding:2rem; min-width:250px;">
+                    <i class="fas fa-chart-line fa-2x" style="color:var(--primary-color);"></i>
+                    <h3>Track Your Success</h3>
+                    <p>Monitor your earnings, transactions, and customer feedback in one place.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="buyers" class="fade-in" style="padding: 3rem 0;">
+        <div class="container" style="max-width:900px;">
+            <h2 style="text-align:center; color:var(--primary-color);">For Buyers</h2>
+            <div style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center;">
+                <div class="glass-card" style="flex:1 1 300px; padding:2rem; min-width:250px;">
+                    <i class="fas fa-search fa-2x" style="color:var(--primary-color);"></i>
+                    <h3>Browse Local Products</h3>
+                    <p>Discover a wide range of products and services from trusted sellers in your area.</p>
+                </div>
+                <div class="glass-card" style="flex:1 1 300px; padding:2rem; min-width:250px;">
+                    <i class="fas fa-hand-holding-usd fa-2x" style="color:var(--primary-color);"></i>
+                    <h3>Easy & Secure Payments</h3>
+                    <p>Pay for goods and services securely using your preferred payment method.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="about" class="fade-in" style="background: var(--card-bg); padding: 3rem 0;">
+        <div class="container" style="max-width:900px;">
+            <h2 style="text-align:center; color:var(--primary-color);">About market_online</h2>
+            <p style="text-align:center; color:var(--text-light); max-width:700px; margin:0 auto;">market_online is dedicated to empowering Cameroon’s informal sector by providing digital financial tools, business growth opportunities, and a trusted marketplace for buyers and sellers. We believe in financial inclusion, transparency, and supporting local entrepreneurship.</p>
+        </div>
+    </section>
+    <footer class="fade-in" style="background:var(--card-bg); padding:2.5rem 0 0 0; margin-top:2rem; border-top:1px solid var(--border-color);">
+        <div class="footer-flex">
+            <div class="footer-col glass-card">
+                <h3>market_online</h3>
+                <p>Empowering Cameroon’s informal businesses and buyers with digital tools and trusted payments.</p>
+                <div style="margin-top:1.2rem;">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col glass-card">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#business">Business</a></li>
+                    <li><a href="#buyers">Buyers</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#payments">Payments</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col glass-card">
+                <h4>Contact</h4>
+                <p>info@market_online.cm<br>+237 6 99 99 99 99</p>
+            </div>
+            <div class="footer-col glass-card">
+                <h4>Payment Methods</h4>
+                <div class="footer-payments">
+                    <img src="68111b72e8a6daa83f6e391900cfe391.jpg" alt="MTN">
+                    <img src="Orange Money Logo PNG Vector (AI) Free Download.jpeg" alt="Orange">
+                    <i class="fas fa-university"></i>
+                    <i class="fas fa-wallet"></i>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">&copy; 2025 market_online. All rights reserved.</div>
+    </footer>
+<script>
+// Dropdown login logic
+const loginDropdown = document.querySelector('.login-dropdown');
+const loginDropdownMenu = document.querySelector('.login-dropdown-menu');
+const openLoginDropdown = document.getElementById('openLoginDropdown');
+const loginAsBuyer = document.getElementById('loginAsBuyer');
+const loginAsSeller = document.getElementById('loginAsSeller');
+const loginModal = document.getElementById('loginModal');
+const closeLoginModal = document.getElementById('closeLoginModal');
+
+// Show/hide dropdown on hover
+loginDropdown.addEventListener('mouseenter', () => {
+  loginDropdownMenu.style.display = 'block';
+});
+loginDropdown.addEventListener('mouseleave', () => {
+  loginDropdownMenu.style.display = '';
+});
+
+// Buyer: direct to products page
+loginAsBuyer.addEventListener('click', e => {
+  e.preventDefault();
+  window.location.href = 'buyer_products.html';
+});
+// Seller: show login modal
+loginAsSeller.addEventListener('click', e => {
+  e.preventDefault();
+  loginModal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+});
+closeLoginModal.addEventListener('click', () => {
+  loginModal.style.display = 'none';
+  document.body.style.overflow = '';
+});
+loginModal.addEventListener('click', e => {
+  if (e.target === loginModal) {
+    loginModal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+});
+// Theme toggle logic with smooth transition for all content
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+body.setAttribute('data-theme', savedTheme);
+themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+document.documentElement.style.transition = 'background 0.5s, color 0.5s';
+Array.from(document.body.children).forEach(el => el.style.transition = 'background 0.5s, color 0.5s, box-shadow 0.5s');
+themeToggle.addEventListener('click', () => {
+    const currentTheme = body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    body.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+});
+
+// Enhanced scroll-triggered fade-in animation with staggered effect
+function fadeInOnScroll() {
+    const fadeEls = document.querySelectorAll('.fade-in');
+    let delay = 0;
+    fadeEls.forEach((el, idx) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 60) {
+            if (!el.classList.contains('visible')) {
+                el.style.transitionDelay = (delay * 0.12) + 's';
+                el.classList.add('visible');
+                delay++;
+            }
+        }
+    });
+}
+window.addEventListener('scroll', fadeInOnScroll);
+window.addEventListener('load', fadeInOnScroll);
+</script>
+</body>
+</html>

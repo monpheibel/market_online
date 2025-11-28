@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>market_online | Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="cameroon_theme.css">
+    <style>
+        .login-wrapper {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .user-type-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            flex: 1;
+            min-width: 280px;
+            max-width: 300px;
+        }
+        .user-type-btn {
+            padding: 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 0.8rem;
+            background: var(--card-bg);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .user-type-btn:hover, .user-type-btn.active {
+            border-color: var(--primary-color);
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--primary-color);
+        }
+        .user-type-btn i {
+            display: block;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="centered">
+        <div class="login-card">
+            <main style="width:100vw;min-height:100vh;display:flex;align-items:center;justify-content:center;">
+                <div class="login-container" style="width:100%;max-width:700px;">
+                    <h2 style="text-align:center;color:var(--primary-color);margin-bottom:2rem;">Welcome to market_online</h2>
+                    
+                    <div class="login-wrapper">
+                        <!-- User Type Selector -->
+                        <div class="user-type-selector">
+                            <h3 style="text-align:center;color:var(--text-color);margin-bottom:1rem;">I am a</h3>
+                            <button type="button" class="user-type-btn active" data-type="buyer" onclick="selectUserType('buyer')">
+                                <i class="fas fa-shopping-bag"></i>
+                                Buyer
+                            </button>
+                            <button type="button" class="user-type-btn" data-type="seller" onclick="selectUserType('seller')">
+                                <i class="fas fa-store"></i>
+                                Seller
+                            </button>
+                        </div>
+
+                        <!-- Login Form -->
+                        <form class="login-form" autocomplete="off" style="flex: 1; min-width: 280px;">
+                            <div>
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div>
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password" required>
+                            </div>
+                            <button type="submit" class="login-btn">Login</button>
+                        </form>
+                    </div>
+
+                    <p style="text-align:center;margin-top:2rem;color:var(--text-light);">
+                        Don't have an account? 
+                        <a href="signup.html" class="switch-link" style="text-decoration:underline;">Sign Up as <span id="signupType">Buyer</span></a>
+                    </p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        let selectedUserType = 'buyer';
+
+        function selectUserType(type) {
+            selectedUserType = type;
+            document.querySelectorAll('.user-type-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-type="${type}"]`).classList.add('active');
+            document.getElementById('signupType').textContent = type.charAt(0).toUpperCase() + type.slice(1);
+        }
+
+        const loginForm = document.querySelector('.login-form');
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (selectedUserType === 'seller') {
+                // Save seller login info and redirect to seller dashboard
+                localStorage.setItem('market_online_current_user', JSON.stringify({
+                    email: email,
+                    userType: 'seller'
+                }));
+                window.location.href = 'seller_dashboard.html';
+            } else {
+                // Save buyer login info and redirect to products
+                localStorage.setItem('market_online_current_user', JSON.stringify({
+                    email: email,
+                    userType: 'buyer'
+                }));
+                window.location.href = 'buyer_products.html';
+            }
+        });
+    </script>
+</body>
+</html>

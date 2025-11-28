@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>market_online | Create Account</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="cameroon_theme.css">
+    <style>
+        .account-type-selector {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        .account-type-btn {
+            padding: 2rem;
+            border: 2px solid var(--border-color);
+            border-radius: 1rem;
+            background: var(--card-bg);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 200px;
+        }
+        .account-type-btn.active {
+            border-color: var(--primary-color);
+            background: rgba(255, 215, 0, 0.1);
+        }
+        .account-type-btn i {
+            display: block;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .signup-form-row {
+            display: flex;
+            gap: 2.5rem;
+            justify-content: space-between;
+        }
+        .signup-form-col {
+            flex: 1 1 260px;
+            min-width: 220px;
+        }
+        @media (max-width: 700px) {
+            .signup-form-row {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .account-type-selector {
+                flex-direction: column;
+            }
+            .signup-card {
+                max-width: 98vw;
+                padding: 1.2rem 0.5rem;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-flex">
+            <div class="logo">
+                <h1>market_online</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="market_online_welcome.html">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Business</a></li>
+                    <li><a href="#">Buyers</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <!-- Account Type Selection -->
+            <div style="text-align: center; margin: 3rem 0;">
+                <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Choose Your Account Type</h2>
+                <div class="account-type-selector">
+                    <button type="button" class="account-type-btn active" data-type="buyer" onclick="selectAccountType('buyer')">
+                        <i class="fas fa-shopping-bag"></i>
+                        <strong>I'm a Buyer</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">Browse and purchase products</p>
+                    </button>
+                    <button type="button" class="account-type-btn" data-type="seller" onclick="selectAccountType('seller')">
+                        <i class="fas fa-store"></i>
+                        <strong>I'm a Seller</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">Sell your products online</p>
+                    </button>
+                </div>
+            </div>
+
+            <div class="signup-main">
+                <div class="signup-side">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3075/3075975.png" alt="market_online Logo" style="width:48px;margin-bottom:0.7rem;">
+                    <h3>Why join market_online?</h3>
+                    <ul>
+                        <li>Access to business funding and digital payments</li>
+                        <li>Showcase your services to more customers</li>
+                        <li>Easy account management and support</li>
+                        <li>Grow your business with digital tools</li>
+                    </ul>
+                </div>
+                <div class="signup-card">
+                    <h2 id="signupTitle">Create Your Buyer Account</h2>
+                    <p style="color:var(--text-light);margin-bottom:1.5rem;" id="signupSubtitle">Join our marketplace to browse and purchase from verified sellers</p>
+                    <form id="signupForm">
+                        <div class="signup-form-row">
+                            <div class="signup-form-col">
+                                <div class="form-group">
+                                    <label for="name">Full Name *</label>
+                                    <input type="text" id="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input type="email" id="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number *</label>
+                                    <input type="tel" id="phone" pattern="[+0-9 ]{9,20}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password *</label>
+                                    <input type="password" id="password" required>
+                                </div>
+                            </div>
+                            <div class="signup-form-col">
+                                <div class="form-group">
+                                    <label for="location">Location *</label>
+                                    <select id="location" required>
+                                        <option value="">Select your locality</option>
+                                        <option value="Douala">Douala</option>
+                                        <option value="Yaoundé">Yaoundé</option>
+                                        <option value="Bafoussam">Bafoussam</option>
+                                        <option value="Bamenda">Bamenda</option>
+                                        <option value="Garoua">Garoua</option>
+                                        <option value="Maroua">Maroua</option>
+                                        <option value="Ngaoundéré">Ngaoundéré</option>
+                                        <option value="Bertoua">Bertoua</option>
+                                        <option value="Ebolowa">Ebolowa</option>
+                                        <option value="Limbé">Limbé</option>
+                                        <option value="Kribi">Kribi</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" id="businessTypeGroup">
+                                    <label>Type of Business/Product *</label>
+                                    <div class="business-types" id="businessTypes">
+                                        <div class="business-type" data-type="Tailoring">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/892/892458.png" alt="Tailoring">
+                                            <span>Tailoring</span>
+                                        </div>
+                                        <div class="business-type" data-type="Hair & Beauty">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/3465/3465446.png" alt="Hair & Beauty">
+                                            <span>Hair & Beauty</span>
+                                        </div>
+                                        <div class="business-type" data-type="Cleaning & Laundry">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/1722/1722730.png" alt="Cleaning & Laundry">
+                                            <span>Cleaning & Laundry</span>
+                                        </div>
+                                        <div class="business-type" data-type="Repairs (Phone, Shoe, etc.)">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/1042/1042330.png" alt="Repairs">
+                                            <span>Repairs (Phone, Shoe, etc.)</span>
+                                        </div>
+                                        <div class="business-type" data-type="Street Vendor (Snacks)">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/3075/3075975.png" alt="Street Vendor">
+                                            <span>Street Vendor (Snacks)</span>
+                                        </div>
+                                        <div class="business-type" data-type="Moto Taxi">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/201/201818.png" alt="Moto Taxi">
+                                            <span>Moto Taxi</span>
+                                        </div>
+                                        <div class="business-type" data-type="Restaurant/Food Seller">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" alt="Restaurant">
+                                            <span>Restaurant/Food Seller</span>
+                                        </div>
+                                        <div class="business-type" data-type="Farmer">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/3075/3075972.png" alt="Farmer">
+                                            <span>Farmer</span>
+                                        </div>
+                                        <div class="business-type" data-type="Other">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/565/565547.png" alt="Other">
+                                            <span>Other</span>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="businessType" name="businessType">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">Create Account</button>
+                    </form>
+                    <a href="login.html" class="switch-link">Already have an account? Login</a>
+                </div>
+            </div>
+
+            <!-- Modal for confirmation -->
+            <div id="confirmationModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,41,59,0.25);z-index:9999;align-items:center;justify-content:center;">
+                <div style="background:var(--card-bg);padding:2rem 1.5rem;border-radius:1rem;box-shadow:0 8px 32px rgba(255,215,0,0.13);max-width:350px;width:90vw;text-align:center;position:relative;">
+                    <button id="closeModal" style="position:absolute;top:0.7rem;right:1rem;background:none;border:none;font-size:1.3rem;color:var(--text-light);cursor:pointer;">&times;</button>
+                    <img src="https://cdn-icons-png.flaticon.com/512/3075/3075975.png" alt="market_online Logo" style="width:40px;margin-bottom:0.7rem;">
+                    <h3 style="color:var(--primary-color);margin-bottom:0.7rem;">Confirm Your Information</h3>
+                    <div id="modalInfo" style="text-align:left;font-size:1.05em;color:var(--text-color);margin-bottom:1.2rem;"></div>
+                    <button id="confirmBtn" class="btn" style="margin:0;">Confirm & Create Account</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-flex">
+            <div class="footer-col">
+                <h4>market_online</h4>
+                <p>Empowering Cameroon's informal businesses and buyers.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="market_online_welcome.html">Home</a></li>
+                    <li><a href="#">Business</a></li>
+                    <li><a href="#">Buyers</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-contact">
+                <h4>Contact</h4>
+                <p>info@market_online.cm<br>+237 6 99 99 99 99</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">&copy; 2025 market_online. All rights reserved.</div>
+    </footer>
+
+    <script>
+        // Theme toggle logic
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        body.setAttribute('data-theme', savedTheme);
+        themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        });
+
+        let selectedAccountType = 'buyer';
+
+        function selectAccountType(type) {
+            selectedAccountType = type;
+            document.querySelectorAll('.account-type-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-type="${type}"]`).classList.add('active');
+            
+            const businessGroup = document.getElementById('businessTypeGroup');
+            const signupTitle = document.getElementById('signupTitle');
+            const signupSubtitle = document.getElementById('signupSubtitle');
+
+            if (type === 'seller') {
+                businessGroup.style.display = 'block';
+                signupTitle.textContent = 'Create Your Seller Account';
+                signupSubtitle.textContent = 'Sell your products and grow your business with market_online';
+                document.getElementById('businessType').required = true;
+            } else {
+                businessGroup.style.display = 'none';
+                signupTitle.textContent = 'Create Your Buyer Account';
+                signupSubtitle.textContent = 'Join our marketplace to browse and purchase from verified sellers';
+                document.getElementById('businessType').required = false;
+            }
+        }
+
+        // Business type selection
+        const businessTypes = document.querySelectorAll('.business-type');
+        const businessTypeInput = document.getElementById('businessType');
+        businessTypes.forEach(type => {
+            type.addEventListener('click', () => {
+                businessTypes.forEach(t => t.classList.remove('selected'));
+                type.classList.add('selected');
+                businessTypeInput.value = type.getAttribute('data-type');
+            });
+        });
+
+        // Modal confirmation and save to localStorage
+        const signupForm = document.getElementById('signupForm');
+        const confirmationModal = document.getElementById('confirmationModal');
+        const modalInfo = document.getElementById('modalInfo');
+        const closeModal = document.getElementById('closeModal');
+        const confirmBtn = document.getElementById('confirmBtn');
+        let pendingUser = null;
+
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (selectedAccountType === 'seller' && !businessTypeInput.value) {
+                alert('Please select a business type.');
+                return;
+            }
+
+            pendingUser = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                password: document.getElementById('password').value,
+                location: document.getElementById('location').value,
+                business: selectedAccountType === 'seller' ? businessTypeInput.value : '',
+                userType: selectedAccountType,
+                status: 'active',
+                createdAt: new Date().toISOString()
+            };
+
+            let modalContent = `
+                <strong>Name:</strong> ${pendingUser.name}<br>
+                <strong>Email:</strong> ${pendingUser.email}<br>
+                <strong>Location:</strong> ${pendingUser.location}<br>
+            `;
+
+            if (selectedAccountType === 'seller') {
+                modalContent += `<strong>Business Type:</strong> ${pendingUser.business}<br>`;
+            }
+
+            modalInfo.innerHTML = modalContent;
+            confirmationModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            confirmationModal.style.display = 'none';
+        });
+
+        confirmBtn.addEventListener('click', () => {
+            confirmationModal.style.display = 'none';
+
+            if (selectedAccountType === 'buyer') {
+                // Save buyer to localStorage
+                let users = JSON.parse(localStorage.getItem('market_online_users')) || [];
+                users.push(pendingUser);
+                localStorage.setItem('market_online_users', JSON.stringify(users));
+                alert('Buyer account created successfully!');
+                window.location.href = 'login.html';
+            } else {
+                // Save seller to localStorage and redirect to verification
+                localStorage.setItem('market_online_pending_seller', JSON.stringify(pendingUser));
+                alert('Account created! Proceeding to verification...');
+                window.location.href = 'seller_signup.html';
+            }
+        });
+
+        // Initialize UI
+        selectAccountType('buyer');
+    </script>
+</body>
+</html>

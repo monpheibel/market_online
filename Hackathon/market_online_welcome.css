@@ -1,0 +1,131 @@
+/* market_online_welcome.css - External stylesheet for market_online Welcome Page */
+
+/* Login Dropdown Styles */
+.login-dropdown {
+  position: relative;
+}
+.login-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 170px;
+  background: var(--card-glass);
+  box-shadow: 0 8px 32px 0 rgba(37,99,235,0.13), 0 2px 8px 0 rgba(0,0,0,0.10);
+  border-radius: 0.8rem;
+  padding: 0.5rem 0;
+  z-index: 1000;
+  backdrop-filter: blur(12px) saturate(1.2);
+  animation: fadeInDropdown 0.22s cubic-bezier(.4,0,.2,1);
+}
+.login-dropdown-menu li {
+  list-style: none;
+}
+.login-dropdown-menu a {
+  display: block;
+  padding: 0.7em 1.2em;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0.6rem;
+  transition: background 0.18s, color 0.18s;
+}
+.login-dropdown-menu a:hover {
+  background: rgba(37,99,235,0.09);
+  color: var(--primary-color);
+}
+@keyframes fadeInDropdown {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    transition: opacity 0.9s cubic-bezier(.4,0,.2,1), transform 0.9s cubic-bezier(.4,0,.2,1);
+    will-change: opacity, transform;
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.01);
+    box-shadow: 0 8px 32px 0 rgba(37,99,235,0.13), 0 2px 8px 0 rgba(0,0,0,0.10);
+}
+:root {
+    --primary-color: #FFD700;
+    --secondary-color: #FFA500;
+    --accent-color: #FFD700;
+    --text-color: #1a1a1a;
+    --text-light: #4a4a4a;
+    --bg-color: #ffffff;
+    --card-bg: #f8f8f8;
+    --card-glass: rgba(255,255,255,0.95);
+    --border-color: #FFD700;
+    --shadow: 0 4px 6px rgba(255, 215, 0, 0.15);
+}
+[data-theme="dark"] {
+    --primary-color: #FFD700;
+    --secondary-color: #FFA500;
+    --accent-color: #FFD700;
+    --text-color: #ffffff;
+    --text-light: #cccccc;
+    --bg-color: #1a1a1a;
+    --card-bg: #2a2a2a;
+    --card-glass: rgba(42,42,42,0.95);
+    --border-color: #FFD700;
+    --shadow: 0 4px 24px rgba(255,215,0,0.2);
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    min-height: 100vh;
+    transition: background 0.3s, color 0.3s;
+    animation: fadeInBody 1.2s cubic-bezier(.4,0,.2,1);
+}
+.container {
+    animation: fadeInUp 1.1s cubic-bezier(.4,0,.2,1);
+}
+@keyframes fadeInBody {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+.header {
+    width: 100%;
+    padding: 1.2rem 0;
+    background: var(--bg-color);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--border-color);
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.logo h1 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin: 0;
+    letter-spacing: 1px;
+}
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 1.2rem;
+    background: var(--card-glass);
+    border-radius: 1.2rem;
+    box-shadow: 0 2px 16px 0 rgba(37,99,235,0.10), 0 1.5px 6px 0 rgba(0,0,0,0.07);
+    backdrop-filter: blur(12px) saturate(1.2);
+    align-items: center;
+}
+/* ... rest of CSS unchanged (kept as original) ... */
