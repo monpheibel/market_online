@@ -68,6 +68,22 @@
             border-radius: 0.5rem;
             margin-top: 0.5rem;
         }
+        /* Make seller verification form responsive and touch friendly */
+        @media (max-width: 600px) {
+            .seller-signup-container {
+                margin: 1rem;
+                padding: 1rem;
+                width: calc(100% - 2rem);
+            }
+            .document-upload-group {
+                padding: 1rem;
+            }
+            .file-input-label {
+                padding: 0.9rem;
+                font-size: 0.95rem;
+            }
+            .file-preview img { max-height: 120px; }
+        }
     </style>
 </head>
 <body>

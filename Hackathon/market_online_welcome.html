@@ -13,6 +13,10 @@
             <div class="logo">
                 <h1>market_online</h1>
             </div>
+            <!-- Hamburger for mobile -->
+            <button id="navToggle" class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-box"><span class="hamburger-inner"></span></span>
+            </button>
             <nav>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
@@ -229,6 +233,26 @@ const loginAsBuyer = document.getElementById('loginAsBuyer');
 const loginAsSeller = document.getElementById('loginAsSeller');
 const loginModal = document.getElementById('loginModal');
 const closeLoginModal = document.getElementById('closeLoginModal');
+
+// Mobile navigation toggle
+const navToggle = document.getElementById('navToggle');
+const headerEl = document.querySelector('.header');
+if (navToggle && headerEl) {
+    navToggle.addEventListener('click', () => {
+        const isOpen = headerEl.classList.toggle('nav-open');
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        // Prevent body scroll when menu open
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    // Close nav when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(a => {
+        a.addEventListener('click', () => {
+            headerEl.classList.remove('nav-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        });
+    });
+}
 
 // Show/hide dropdown on hover
 loginDropdown.addEventListener('mouseenter', () => {
